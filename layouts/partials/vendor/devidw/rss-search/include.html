@@ -1,0 +1,6 @@
+<input type=search placeholder="Just begin to type …" required style="box-sizing: border-box; width: 100%;">
+
+<div id="results"></div>
+
+{{ $js := resources.Get "js/vendor/devidw/rss-search/script.js" | minify | fingerprint }}
+<script src="{{ $js.Permalink }}"></script>

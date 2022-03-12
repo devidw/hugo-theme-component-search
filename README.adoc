@@ -1,0 +1,121 @@
+= RSS Search
+
+Make your hugo blog searchable by simply search for blog posts in the auto-generated RSS feed file `index.xml`. 
+
+No need to generate extra `.json` search index files.
+
+Since the theme component looks for the RSS feed file, make sure you have it available in your builded site.
+
+== Installation
+
+=== 1. Add submodule
+
+Clone this theme component to your project's `themes` directory:
+
+[source,cmd]
+----
+git submodule add https://github.com/devidw/hugo-theme-component-rss-search ./themes/hugo-theme-component-rss-search
+----
+
+
+=== 2. Add config
+
+Add this theme component to your list of themes inside your project's `config` file (either `.yaml`, `.toml` or `.json`):
+
+|===
+| Format | Syntax
+
+| `config.yaml`
+a|
+[source,yaml]
+----
+theme: 
+  - "…"
+  - "hugo-theme-component-rss-search"
+  - "…"
+----
+
+| `config.toml`
+a| [source,toml]
+----
+theme = ["…", "hugo-theme-component-rss-search", "…"]
+----
+
+| `config.json`
+a| [source,json]
+----
+"theme": ["…", "hugo-theme-component-rss-search", "…"]
+----
+|===
+
+
+
+=== 3. Embed theme component
+
+
+==== Partial(s)
+
+Include the available theme component partial(s) in your theme's template file(s):
+
+[source,html]
+----
+<!-- ... -->
+
+{{ if templates.Exists "partials/vendor/devidw/rss-search/include.html" }}
+    {{ partial "vendor/devidw/rss-search/include.html" . }}
+{{ end }}
+
+<!-- ... -->
+----
+
+
+== Examples
+
+=== Standalone search page
+
+You can embed the partial everywhere you want in to appear on your site.
+
+If you want to have a standalone search page, you can create a page template for your search page. 
+
+To do so, create a `search/single.html` template file in your theme's `layouts/` directory.
+
+NOTE: `search` can be any name you want.
+
+Inside the template file, include the partial as mentioned above.
+
+You propably want to wrap the partial inside a block definition block to extend your main layout:
+
+[source,html]
+----
+{{define "main"}}
+  {{ if templates.Exists "partials/vendor/devidw/rss-search/include.html" }}
+    {{ partial "vendor/devidw/rss-search/include.html" . }}
+  {{ end }}
+{{ end }}
+----
+
+NOTE: Make sure to adjust the block name to your needs, if you main block is not named `main`.
+
+When you have set up the template file, you can create the actual search page by creating a `search.adoc` file in your `content/` directory.
+
+NOTE: `search.adoc` can be any valid hugo content file name. For example, `search.md` or `search.html` are just fine as well.
+
+Add the following frontmatter to your `search.adoc` file:
+
+[source,adoc]
+----
+---
+title: "Search"
+description: "Quickly find what you are looking for."
+type: "search"
+# ...
+---
+----
+
+NOTE: The `type` frontmatter is important. It is used to determine the page type. Any other frontmatter can be specified as you wish.
+
+You should now have a standalone search page accessible under the address based on your permalink settings.
+
+***
+
+_This https://gohugo.io/hugo-modules/theme-components/[hugo theme component] was scaffolded with the https://github.com/devidw/cookiecutter-hugo-theme-component[cookiecutter-hugo-theme-component] template._
