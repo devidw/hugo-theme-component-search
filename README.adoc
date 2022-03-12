@@ -102,14 +102,12 @@ NOTE: `search.adoc` can be any valid hugo content file name. For example, `searc
 
 Add the following frontmatter to your `search.adoc` file:
 
-[source,adoc]
+[source,yaml]
 ----
----
 title: "Search"
 description: "Quickly find what you are looking for."
 type: "search"
 # ...
----
 ----
 
 NOTE: The `type` frontmatter is important. It is used to determine the page type. Any other frontmatter can be specified as you wish.
