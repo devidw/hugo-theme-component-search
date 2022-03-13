@@ -1,0 +1,7 @@
+<input type=search placeholder="Just begin to type …" required autofocus style="box-sizing: border-box; width: 100%;"
+    pattern=".*\S+.*">
+
+<ul id="results"></ul>
+
+{{ $js := resources.Get "js/vendor/devidw/search/script.js" | minify | fingerprint }}
+<script src="{{ $js.Permalink }}"></script>

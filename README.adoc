@@ -1,4 +1,4 @@
-= RSS Search
+= Search
 
 Make your hugo blog searchable by simply search for blog posts in the auto-generated RSS feed file `index.xml`. 
 
@@ -14,7 +14,7 @@ Clone this theme component to your project's `themes` directory:
 
 [source,cmd]
 ----
-git submodule add https://github.com/devidw/hugo-theme-component-rss-search ./themes/hugo-theme-component-rss-search
+git submodule add https://github.com/devidw/hugo-theme-component-search ./themes/hugo-theme-component-search
 ----
 
 
@@ -31,20 +31,20 @@ a|
 ----
 theme: 
   - "…"
-  - "hugo-theme-component-rss-search"
+  - "hugo-theme-component-search"
   - "…"
 ----
 
 | `config.toml`
 a| [source,toml]
 ----
-theme = ["…", "hugo-theme-component-rss-search", "…"]
+theme = ["…", "hugo-theme-component-search", "…"]
 ----
 
 | `config.json`
 a| [source,json]
 ----
-"theme": ["…", "hugo-theme-component-rss-search", "…"]
+"theme": ["…", "hugo-theme-component-search", "…"]
 ----
 |===
 
@@ -61,8 +61,8 @@ Include the available theme component partial(s) in your theme's template file(s
 ----
 <!-- ... -->
 
-{{ if templates.Exists "partials/vendor/devidw/rss-search/include.html" }}
-    {{ partial "vendor/devidw/rss-search/include.html" . }}
+{{ if templates.Exists "partials/vendor/devidw/search/include.html" }}
+    {{ partial "vendor/devidw/search/include.html" . }}
 {{ end }}
 
 <!-- ... -->
@@ -88,8 +88,8 @@ You propably want to wrap the partial inside a block definition block to extend 
 [source,html]
 ----
 {{define "main"}}
-  {{ if templates.Exists "partials/vendor/devidw/rss-search/include.html" }}
-    {{ partial "vendor/devidw/rss-search/include.html" . }}
+  {{ if templates.Exists "partials/vendor/devidw/search/include.html" }}
+    {{ partial "vendor/devidw/search/include.html" . }}
   {{ end }}
 {{ end }}
 ----

@@ -9,9 +9,10 @@ fetch(RSS_URL)
         const results = document.querySelector('#results')
 
         search.addEventListener('input', () => {
-            const value = search.value.toLowerCase()
+            const query = search.value.toLowerCase().trim()
 
-            if (value === '') {
+            // exit when empty value or just whitespace
+            if (query === '') {
                 results.innerHTML = ''
                 return
             }
@@ -19,7 +20,7 @@ fetch(RSS_URL)
             const filtered = [...items].filter(item => {
                 const title = item.querySelector('title').textContent.toLowerCase()
                 const description = item.querySelector('description').textContent.toLowerCase()
-                return title.includes(value) || description.includes(value)
+                return title.includes(query) || description.includes(query)
             })
 
             results.innerHTML = ''
@@ -27,20 +28,9 @@ fetch(RSS_URL)
                 const title = item.querySelector('title').textContent
                 const description = item.querySelector('description').textContent
                 const link = item.querySelector('link').textContent
-                const article = document.createElement('article')
-                article.innerHTML = `
-                <header>
-                    <h2>
-                        <a href="${link}">
-                            ${title}
-                        </a>
-                    </h2>
-                </header>
-                <div class="content">
-                    ${description}
-                </div>
-                `
-                results.appendChild(article)
+                const li = document.createElement('li')
+                li.innerHTML = `<a href="${link}">${title}</a>`
+                results.appendChild(li)
             })
         })
     })
